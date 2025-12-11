@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
     selector: 'app-signin',
@@ -24,7 +25,7 @@ export class SigninComponent implements OnInit, OnDestroy {
     '🥑', '🍅', '🥦', '🥝', '🍌', '🍇', '🍉', '🧀', '🥞', '🍗'
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private authService : AuthServiceService) {}
 
   ngOnInit(): void {
       //this.initFoodAnimation();
@@ -86,14 +87,18 @@ export class SigninComponent implements OnInit, OnDestroy {
 
     
 
+this.authService.signin(this.email, this.password).subscribe({
+      next: (response) => {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/profile']);
+      },
+      error: (err) => {
+        console.error('Login error:', err);
+        alert('Échec de la connexion. Veuillez vérifier vos informations.');
+      }
+    });
 
 
-    // Simulation d'une requête
-    setTimeout(() => {
-      console.log('Connexion avec :', { email: this.email, password: this.password });
-
-      this.router.navigate(['/dashboard']);
-    }, 2000);
   }
 
  

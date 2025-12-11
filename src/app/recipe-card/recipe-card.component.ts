@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class RecipeCardComponent {
   @Input() recipe: any;
+  defaultPhoto: string = 'https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
 }

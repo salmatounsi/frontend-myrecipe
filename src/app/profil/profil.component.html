@@ -10,15 +10,6 @@
         {{ food.emoji }}
     </div>
 </div-->
-<nav class="navbar">
-  <div class="logo"></div>
-
-  <ul class="links">
-    <li><a href="/home">Accueil</a></li>
-    <li><a href="/profil">Profil</a></li>
-    <li><a href="#" class="logout-btn">Déconnexion</a></li>
-  </ul>
-</nav>
 <!-- Container principal -->
 <div class="profile-container">
     <!-- En-tête du profil simplifié -->
@@ -29,9 +20,9 @@
     <div class="profile-header-simple">
         <div class="profile-info-minimal">
             <div class="profile-image-minimal">
-                <img [src]="user.profileImage" alt="Photo de profil" class="profile-pic">
+                <img [src]="profilePictureUrl" height="100px" alt="Photo de profil" class="profile-pic">
             </div>
-            <h1 class="profile-name-minimal">{{ user.name }}</h1>
+            <h1 class="profile-name-minimal">{{ user.firstName }} {{ user.lastName }}</h1>
         </div>
     </div>
 
@@ -59,7 +50,7 @@
             <!-- Boucle sur les recettes -->
             <div class="recipe-card" *ngFor="let recipe of userRecipes">
                 <div class="recipe-image-container">
-                    <img [src]="recipe.imageUrl" [alt]="recipe.title" class="recipe-image">
+                    <img [src]="recipe.photoUrl" [alt]="recipe.title" class="recipe-image">
                     <div class="recipe-badge">
                         <i class="fas fa-clock"></i> {{ getTotalTime(recipe) }}
                     </div>
@@ -75,13 +66,8 @@
                             <span class="meta-label">Préparation</span>
                         </div>
                         <div class="meta-item">
-                            <i class="fas fa-fire"></i>
-                            <span class="meta-value">{{ recipe.cookingTime }} min</span>
-                            <span class="meta-label">Cuisson</span>
-                        </div>
-                        <div class="meta-item">
                             <i class="fas fa-utensils"></i>
-                            <span class="meta-value">{{ recipe.servings }}</span>
+                            <span class="meta-value">{{ recipe.numberOfServings }}</span>
                             <span class="meta-label">Personnes</span>
                         </div>
                     </div>

@@ -86,7 +86,7 @@ isLoading: boolean = false;
       title: this.recipeForm.title,
       numberOfServings: this.recipeForm.servings!,
       description: this.recipeForm.description,
-      preparationTime: this.recipeForm.preparationTime?.toString() ?? null,
+      preparationTime: this.recipeForm.preparationTime ?? null,
       ingredients,
       steps,
       type: this.recipeForm.type,

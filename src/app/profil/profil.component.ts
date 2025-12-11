@@ -1,27 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { User } from '../models/User';
+import { Recipe } from '../models/Recipe';
+import { ProfileServiceService } from '../services/profile-service.service';
 
-interface Recipe {
-  id: number;
-  title: string;
-  preparationTime: number; // en minutes
-  cookingTime: number; // en minutes
-  servings: number;
-  imageUrl: string;
-  totalTime?: string;
-}
 
-interface User {
-  name: string;
-  profileImage: string;
-  bio: string;
-  stats: {
-    followers: number;
-    following: number;
-  };
-  joinDate: Date;
-}
+
+
 
 interface FoodDecoration {
   emoji: string;
@@ -39,69 +25,42 @@ interface FoodDecoration {
     styleUrls: ['./profil.component.css']
 })
 export class ProfileComponent implements OnInit {
-  
+  constructor(private profileService:ProfileServiceService) { }
   // Données de l'utilisateur
   user: User = {
-    name: 'Marie Dubois',
-    profileImage: 'https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-    bio: 'Passionnée de cuisine depuis 10 ans. J\'adore partager mes recettes familiales et découvrir de nouvelles saveurs du monde entier.',
-    stats: {
-      followers: 128,
-      following: 56
-    },
-    joinDate: new Date('2020-03-15')
+    firstName: 'Marie Dubois',
+    lastName: '',
+    photoUserString: 'https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    email: ' ',
+
   };
+  profilePictureUrl: string = 'https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png';
 
-  // Liste des recettes de l'utilisateur
-  userRecipes: Recipe[] = [
-    {
-      id: 1,
-      title: 'Ratatouille Provençale',
-      preparationTime: 45,
-      cookingTime: 30,
-      servings: 4,
-      imageUrl: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
-    },
-    {
-      id: 2,
-      title: 'Bœuf Bourguignon Traditionnel',
-      preparationTime: 40,
-      cookingTime: 180,
-      servings: 6,
-      imageUrl: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
-    },
-    {
-      id: 3,
-      title: 'Tarte aux Fraises Maison',
-      preparationTime: 25,
-      cookingTime: 30,
-      servings: 8,
-      imageUrl: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
-    },
-    {
-      id: 4,
-      title: 'Salade César au Poulet Grillé',
-      preparationTime: 20,
-      cookingTime: 15,
-      servings: 2,
-      imageUrl: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
-    }
-  ];
 
-  // Éléments décoratifs pour le background
+  userRecipes: Recipe[] = [];
   foodDecorations: FoodDecoration[] = [];
-
-  // Émojis pour les décorations
   private foodEmojis = ['🍕', '🍔', '🥗', '🍝', '🍣', '🍩', '🌮', '🥐', '🍓', '🍰', '🥑', '🍅'];
-  
-  // Couleurs dans les tons orange
-  private orangeShades = ['#FF6600', '#FF8C42', '#FFB347', '#FFD166'];
+    private orangeShades = ['#FF6600', '#FF8C42', '#FFB347', '#FFD166'];
 
   ngOnInit(): void {
-    this.initFoodDecorations();
+   console.log("ngOnInit profil.component.ts");
+    this.profileService.getUser().subscribe((data) => {
+      this.user = data;
+      if(!this.user.photoUserString || this.user.photoUserString.trim() === '') {
+        this.user.photoUserString = 'https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
+      }else{
+      
+      this.profilePictureUrl=data.extPhoto+","+data.photoUserString;
+      console.log("profilePictureUrl:",this.profilePictureUrl);
+      }
+    });
+
+    this.profileService.getUserRecipes().subscribe((data) => {
+      this.userRecipes = data;
+    });
+     this.initFoodDecorations();
   }
 
-  // Initialiser les décorations alimentaires
   private initFoodDecorations(): void {
     for (let i = 0; i < 12; i++) {
       this.foodDecorations.push({
@@ -115,9 +74,9 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  // Obtenir le temps total formaté
   getTotalTime(recipe: Recipe): string {
-    const totalMinutes = recipe.preparationTime + recipe.cookingTime;
+    let totalMinutes = recipe.preparationTime   ;
+    totalMinutes= totalMinutes? totalMinutes:0;
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
     
@@ -127,28 +86,20 @@ export class ProfileComponent implements OnInit {
     return `${minutes}min`;
   }
 
-  // Obtenir l'âge du compte
-  getAccountAge(): number {
-    const diff = new Date().getTime() - this.user.joinDate.getTime();
-    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-  }
 
-  // Éditer la photo de profil
   editProfilePhoto(): void {
     alert('Fonctionnalité d\'édition de photo de profil - À implémenter');
   }
 
-  // Éditer le profil
   editProfile(): void {
     alert('Fonctionnalité d\'édition de profil - À implémenter');
   }
 
-  // Partager le profil
   shareProfile(): void {
     if (navigator.share) {
       navigator.share({
-        title: `Profil de ${this.user.name} - RecettesPro`,
-        text: `Découvrez les recettes de ${this.user.name} sur RecettesPro`,
+        title: `Profil de ${this.user.firstName} - RecettesPro`,
+        text: `Découvrez les recettes de ${this.user.firstName} sur RecettesPro`,
         url: window.location.href
       }).catch(error => console.log('Erreur de partage:', error));
     } else {
@@ -156,7 +107,6 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  // Ajouter une nouvelle recette
   addNewRecipe(): void {
     alert('Redirection vers le formulaire d\'ajout de recette - À implémenter');
     // Dans une vraie application, vous redirigeriez vers /recipes/new
@@ -164,7 +114,7 @@ export class ProfileComponent implements OnInit {
   }
 
   // Voir une recette
-  viewRecipe(recipeId: number): void {
+  viewRecipe(recipeId: number | undefined): void {
     alert(`Voir la recette ${recipeId} - À implémenter`);
     // Dans une vraie application, vous redirigeriez vers /recipes/recipeId
     // this.router.navigate(['/recipes', recipeId]);

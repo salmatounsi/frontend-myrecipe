@@ -7,7 +7,7 @@ export interface Recipe {
   title: string;
   photoUrl?: string | "recipe.png";
   description?: string | null;
-  preparationTime?: string | null; 
+  preparationTime?: number | null; 
   numberOfServings: number;
   user?: User | null;
   ingredients: Ingredient[];

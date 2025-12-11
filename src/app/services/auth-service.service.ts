@@ -14,6 +14,10 @@ export class AuthServiceService {
   signup(user : User): Observable<ResponseToken> {
   return this.http.post<ResponseToken>(this.apiUrl+'/signup',user);
   }
+
+  signin(email: string, password: string): Observable<ResponseToken> {
+    return this.http.post<ResponseToken>(this.apiUrl+'/login',{email,password});
+  }
 }
 
 interface ResponseToken {

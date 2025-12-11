@@ -8,6 +8,6 @@ export interface User {
   password?: string; 
   photoUserString?: string | null;
   extPhoto?: string | null;
-
+  
   recipes?: Recipe[]; 
 }

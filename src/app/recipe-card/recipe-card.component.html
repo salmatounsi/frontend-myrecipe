@@ -7,12 +7,8 @@
     <h3>{{ recipe.title }}</h3>
 
     <div class="user">
-      <img 
-        [src]="recipe.user.photoUserString ? recipe.user.photoUserString : 'assets/default-user.png'" 
-        class="user-img" 
-        [alt]="recipe.user.firstName + ' ' + recipe.user.lastName"
-      />
-      <span>{{ recipe.user.firstName }} {{ recipe.user.lastName }}</span>
+    <!--  <img [src]="recipe.user.photoUserString ?  recipe.user.photoExt + recipe.user.photoUserString : defaultPhoto"  class="user-img" />-->
+      <span>{{recipe.user.firstName}} {{recipe.user.lastName}}</span>
     </div>
 
     <button>Voir détails</button>

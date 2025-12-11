@@ -1,0 +1,125 @@
+<div class="signin-container">
+  <!-- Background avec aliments flottants améliorés -->
+  <div class="food-background">
+    <!-- Aliments statiques - 60 éléments -->
+    <div class="food-item food-1">🍕</div>
+    <div class="food-item food-2">🍔</div>
+    <div class="food-item food-3">🥗</div>
+    <div class="food-item food-4">🍝</div>
+    <div class="food-item food-5">🍣</div>
+    <div class="food-item food-6">🍩</div>
+    <div class="food-item food-7">🌮</div>
+    <div class="food-item food-8">🥐</div>
+    <div class="food-item food-9">🍓</div>
+    <div class="food-item food-10">🍰</div>
+    
+    <div class="food-item food-11">🥑</div>
+    <div class="food-item food-12">🍅</div>
+    <div class="food-item food-13">🥦</div>
+    <div class="food-item food-14">🥝</div>
+    <div class="food-item food-15">🍌</div>
+    <div class="food-item food-16">🍇</div>
+    <div class="food-item food-17">🍉</div>
+    <div class="food-item food-18">🧀</div>
+    <div class="food-item food-19">🥞</div>
+    <div class="food-item food-20">🍗</div>
+    
+    <div class="food-item food-21">🥩</div>
+    <div class="food-item food-22">🍖</div>
+    <div class="food-item food-23">🥪</div>
+    <div class="food-item food-24">🍜</div>
+    <div class="food-item food-25">🥘</div>
+    <div class="food-item food-26">🍛</div>
+    <div class="food-item food-27">🥟</div>
+    <div class="food-item food-28">🍤</div>
+    <div class="food-item food-29">🥠</div>
+    <div class="food-item food-30">🍚</div>
+    
+    <div class="food-item food-31">🍙</div>
+    <div class="food-item food-32">🥮</div>
+    <div class="food-item food-33">🍡</div>
+    <div class="food-item food-34">🥧</div>
+    <div class="food-item food-35">🍦</div>
+    <div class="food-item food-36">🍨</div>
+    <div class="food-item food-37">🍧</div>
+    <div class="food-item food-38">🎂</div>
+    <div class="food-item food-39">🧁</div>
+    <div class="food-item food-40">🍪</div>
+    
+    <div class="food-item food-41">🍫</div>
+    <div class="food-item food-42">🍬</div>
+    <div class="food-item food-43">🍭</div>
+    <div class="food-item food-44">🥜</div>
+    <div class="food-item food-45">🌰</div>
+    <div class="food-item food-46">🥛</div>
+    <div class="food-item food-47">☕</div>
+    <div class="food-item food-48">🍵</div>
+    <div class="food-item food-49">🥤</div>
+    <div class="food-item food-50">🍷</div>
+    
+    <div class="food-item food-51">🍸</div>
+    <div class="food-item food-52">🍹</div>
+    <div class="food-item food-53">🍺</div>
+    <div class="food-item food-54">🍻</div>
+    <div class="food-item food-55">🥂</div>
+    <div class="food-item food-56">🥃</div>
+    <div class="food-item food-57">🧃</div>
+    <div class="food-item food-58">🧉</div>
+    <div class="food-item food-59">🧊</div>
+    <div class="food-item food-60">🥢</div>
+    
+    <!-- Overlay pour effet de profondeur -->
+    <div class="overlay"></div>
+  </div>
+  
+  <!-- Contenu principal -->
+  <div class="container">
+    <div class="signin-card">
+      <!-- En-tête élégant -->
+      <div class="header">
+        <div class="logo">
+          <i class="fas fa-utensils"></i>
+          <h1>Recettes<span>Pro</span></h1>
+        </div>
+        <h2>Bienvenue dans votre espace culinaire</h2>
+        <p>Connectez-vous pour accéder à vos recettes et créer de nouvelles saveurs</p>
+      </div>
+      
+      <!-- Formulaire minimaliste -->
+      <form id="signin-form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div class="input-with-icon">
+            <i class="fas fa-user-circle"></i>
+            <input type="email" id="email" placeholder="Votre adresse email" required [(ngModel)]="email" name="email">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="input-with-icon">
+            <i class="fas fa-key"></i>
+            <input type="password" id="password" placeholder="Votre mot de passe" required [(ngModel)]="password" name="password">
+            <button type="button" class="toggle-password">
+              <i></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Bouton de connexion avec animation -->
+        <button type="submit" class="btn-signin">
+          <span class="btn-content">
+            <i class="fas fa-sign-in-alt"></i>
+            <a href="/profil">Se connecter</a>
+          </span>
+        </button>
+        
+        <!-- Séparateur stylisé -->
+        <div class="separator">
+          <span>Première visite ?</span>
+        </div>
+        
+        <!-- Bouton d'inscription -->
+        <button type="button" class="btn-signup">
+          <i class="fas fa-user-plus"></i>
+         <a href="/signup">Créer un compte gratuit</a>
+        </button>
+       

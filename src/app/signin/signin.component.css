@@ -1,0 +1,669 @@
+/* ============================================
+   RESET & VARIABLES
+   ============================================ */
+
+:root {
+  --primary-orange: #FF6600;
+  --secondary-orange: #FF8C42;
+  --light-orange: #FFB347;
+  --dark-orange: #E55A00;
+  --container-bg: #FFF9F0; /* Couleur beige clair POUR LE CONTAINER */
+  --background: #FFFFFF; /* Fond blanc pour le body */
+  --card-bg: rgba(255, 255, 255, 0.98);
+  --text-dark: #333333;
+  --text-light: #666666;
+  --shadow: 0 15px 35px rgba(255, 102, 0, 0.15);
+  --border-radius: 20px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   STRUCTURE PRINCIPALE
+   ============================================ */
+
+body {
+  background-color: var(--background); /* Fond blanc pour toute la page */
+  min-height: 100vh;
+}
+
+.signin-container {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--container-bg); /* CONSERVE LA COULEUR BEIGE CLAIR */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  padding: 20px;
+}
+
+/* ============================================
+   BACKGROUND AVEC ALIMENTS FLOTTANTS SUR FOND BLANC
+   ============================================ */
+
+.food-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--container-bg); /* Même couleur que le container */
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 204, 153, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 153, 102, 0.15) 0%, transparent 50%);
+  z-index: 2;
+}
+
+/* Animation principale pour les aliments */
+@keyframes floatFood {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.food-item {
+  position: absolute;
+  opacity: 0.7;
+  filter: blur(0.8px);
+  animation: floatFood 20s linear infinite;
+  font-size: 2.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================================
+   60 ALIMENTS FLOTTANTS (inchangés)
+   ============================================ */
+
+.food-1 { left: 3%; animation-delay: 0s; font-size: 2.2rem; color: #FF6600; animation-duration: 28s; }
+.food-2 { left: 8%; animation-delay: -1s; font-size: 2.8rem; color: #FF8C42; animation-duration: 32s; }
+.food-3 { left: 13%; animation-delay: -2s; font-size: 2.1rem; color: #FFB347; animation-duration: 26s; }
+.food-4 { left: 18%; animation-delay: -3s; font-size: 2.9rem; color: #FF6600; animation-duration: 30s; }
+.food-5 { left: 23%; animation-delay: -4s; font-size: 2.4rem; color: #FF8C42; animation-duration: 34s; }
+.food-6 { left: 28%; animation-delay: -5s; font-size: 2.7rem; color: #FFB347; animation-duration: 29s; }
+.food-7 { left: 33%; animation-delay: -6s; font-size: 2.3rem; color: #FF6600; animation-duration: 31s; }
+.food-8 { left: 38%; animation-delay: -7s; font-size: 2.6rem; color: #FF8C42; animation-duration: 27s; }
+.food-9 { left: 43%; animation-delay: -8s; font-size: 2.5rem; color: #FFB347; animation-duration: 33s; }
+.food-10 { left: 48%; animation-delay: -9s; font-size: 2.9rem; color: #FF6600; animation-duration: 35s; }
+.food-11 { left: 53%; animation-delay: -10s; font-size: 2.2rem; color: #FF8C42; animation-duration: 28s; }
+.food-12 { left: 58%; animation-delay: -11s; font-size: 2.8rem; color: #FFB347; animation-duration: 32s; }
+.food-13 { left: 63%; animation-delay: -12s; font-size: 2.4rem; color: #FF6600; animation-duration: 26s; }
+.food-14 { left: 68%; animation-delay: -13s; font-size: 2.7rem; color: #FF8C42; animation-duration: 30s; }
+.food-15 { left: 73%; animation-delay: -14s; font-size: 2.3rem; color: #FFB347; animation-duration: 34s; }
+.food-16 { left: 78%; animation-delay: -15s; font-size: 2.6rem; color: #FF6600; animation-duration: 29s; }
+.food-17 { left: 83%; animation-delay: -16s; font-size: 2.5rem; color: #FF8C42; animation-duration: 31s; }
+.food-18 { left: 88%; animation-delay: -17s; font-size: 2.9rem; color: #FFB347; animation-duration: 27s; }
+.food-19 { left: 93%; animation-delay: -18s; font-size: 2.2rem; color: #FF6600; animation-duration: 33s; }
+.food-20 { left: 98%; animation-delay: -19s; font-size: 2.8rem; color: #FF8C42; animation-duration: 35s; }
+.food-21 { left: 5%; animation-delay: -20s; font-size: 2.3rem; color: #FFB347; animation-duration: 28s; }
+.food-22 { left: 10%; animation-delay: -21s; font-size: 2.6rem; color: #FF6600; animation-duration: 32s; }
+.food-23 { left: 15%; animation-delay: -22s; font-size: 2.4rem; color: #FF8C42; animation-duration: 26s; }
+.food-24 { left: 20%; animation-delay: -23s; font-size: 2.7rem; color: #FFB347; animation-duration: 30s; }
+.food-25 { left: 25%; animation-delay: -24s; font-size: 2.5rem; color: #FF6600; animation-duration: 34s; }
+.food-26 { left: 30%; animation-delay: -25s; font-size: 2.9rem; color: #FF8C42; animation-duration: 29s; }
+.food-27 { left: 35%; animation-delay: -26s; font-size: 2.2rem; color: #FFB347; animation-duration: 31s; }
+.food-28 { left: 40%; animation-delay: -27s; font-size: 2.8rem; color: #FF6600; animation-duration: 27s; }
+.food-29 { left: 45%; animation-delay: -28s; font-size: 2.3rem; color: #FF8C42; animation-duration: 33s; }
+.food-30 { left: 50%; animation-delay: -29s; font-size: 2.6rem; color: #FFB347; animation-duration: 35s; }
+.food-31 { left: 55%; animation-delay: -30s; font-size: 2.4rem; color: #FF6600; animation-duration: 28s; }
+.food-32 { left: 60%; animation-delay: -31s; font-size: 2.7rem; color: #FF8C42; animation-duration: 32s; }
+.food-33 { left: 65%; animation-delay: -32s; font-size: 2.5rem; color: #FFB347; animation-duration: 26s; }
+.food-34 { left: 70%; animation-delay: -33s; font-size: 2.9rem; color: #FF6600; animation-duration: 30s; }
+.food-35 { left: 75%; animation-delay: -34s; font-size: 2.2rem; color: #FF8C42; animation-duration: 34s; }
+.food-36 { left: 80%; animation-delay: -35s; font-size: 2.8rem; color: #FFB347; animation-duration: 29s; }
+.food-37 { left: 85%; animation-delay: -36s; font-size: 2.3rem; color: #FF6600; animation-duration: 31s; }
+.food-38 { left: 90%; animation-delay: -37s; font-size: 2.6rem; color: #FF8C42; animation-duration: 27s; }
+.food-39 { left: 95%; animation-delay: -38s; font-size: 2.4rem; color: #FFB347; animation-duration: 33s; }
+.food-40 { left: 2%; animation-delay: -39s; font-size: 2.7rem; color: #FF6600; animation-duration: 35s; }
+.food-41 { left: 7%; animation-delay: -40s; font-size: 2.5rem; color: #FF8C42; animation-duration: 28s; }
+.food-42 { left: 12%; animation-delay: -41s; font-size: 2.9rem; color: #FFB347; animation-duration: 32s; }
+.food-43 { left: 17%; animation-delay: -42s; font-size: 2.2rem; color: #FF6600; animation-duration: 26s; }
+.food-44 { left: 22%; animation-delay: -43s; font-size: 2.8rem; color: #FF8C42; animation-duration: 30s; }
+.food-45 { left: 27%; animation-delay: -44s; font-size: 2.3rem; color: #FFB347; animation-duration: 34s; }
+.food-46 { left: 32%; animation-delay: -45s; font-size: 2.6rem; color: #FF6600; animation-duration: 29s; }
+.food-47 { left: 37%; animation-delay: -46s; font-size: 2.4rem; color: #FF8C42; animation-duration: 31s; }
+.food-48 { left: 42%; animation-delay: -47s; font-size: 2.7rem; color: #FFB347; animation-duration: 27s; }
+.food-49 { left: 47%; animation-delay: -48s; font-size: 2.5rem; color: #FF6600; animation-duration: 33s; }
+.food-50 { left: 52%; animation-delay: -49s; font-size: 2.9rem; color: #FF8C42; animation-duration: 35s; }
+.food-51 { left: 57%; animation-delay: -50s; font-size: 2.2rem; color: #FFB347; animation-duration: 28s; }
+.food-52 { left: 62%; animation-delay: -51s; font-size: 2.8rem; color: #FF6600; animation-duration: 32s; }
+.food-53 { left: 67%; animation-delay: -52s; font-size: 2.3rem; color: #FF8C42; animation-duration: 26s; }
+.food-54 { left: 72%; animation-delay: -53s; font-size: 2.6rem; color: #FFB347; animation-duration: 30s; }
+.food-55 { left: 77%; animation-delay: -54s; font-size: 2.4rem; color: #FF6600; animation-duration: 34s; }
+.food-56 { left: 82%; animation-delay: -55s; font-size: 2.7rem; color: #FF8C42; animation-duration: 29s; }
+.food-57 { left: 87%; animation-delay: -56s; font-size: 2.5rem; color: #FFB347; animation-duration: 31s; }
+.food-58 { left: 92%; animation-delay: -57s; font-size: 2.9rem; color: #FF6600; animation-duration: 27s; }
+.food-59 { left: 97%; animation-delay: -58s; font-size: 2.2rem; color: #FF8C42; animation-duration: 33s; }
+.food-60 { left: 4%; animation-delay: -59s; font-size: 2.8rem; color: #FFB347; animation-duration: 35s; }
+
+/* ============================================
+   CONTENEUR PRINCIPAL & CARTE
+   ============================================ */
+
+.container {
+  width: 100%;
+  max-width: 450px;
+  margin: 20px;
+  z-index: 3;
+  position: relative;
+}
+
+.signin-card {
+  background-color: rgba(255, 255, 255, 0.92);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(255, 102, 0, 0.2);
+  padding: 40px;
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(10px);
+  width: 100%;
+}
+
+.signin-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(255, 102, 0, 0.25);
+}
+
+/* ============================================
+   EN-TÊTE
+   ============================================ */
+
+.header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  color: #FF6600;
+}
+
+.logo i {
+  font-size: 2.5rem;
+  margin-right: 10px;
+  background: linear-gradient(to right, #FF6600, #FF8C42);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #FF6600, #FF8C42);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo span {
+  font-weight: 300;
+  color: var(--dark-orange);
+}
+
+.header h2 {
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.header p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   FORMULAIRE
+   ============================================ */
+
+#signin-form {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-with-icon i:first-of-type {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #FF6600;
+  font-size: 1.1rem;
+  z-index: 2;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 16px 50px 16px 50px;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background-color: #f9f9f9;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-with-icon input:focus {
+  border-color: #FF6600;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.input-with-icon input::placeholder {
+  color: #aaa;
+}
+
+/* ============================================
+   BOUTON TOGGLE PASSWORD
+   ============================================ */
+
+.toggle-password {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 5px;
+  transition: color 0.3s;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password:hover {
+  color: #FF6600;
+}
+
+/* ============================================
+   BOUTON DE CONNEXION
+   ============================================ */
+
+.btn-signin {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(to right, #FF6600, #FF8C42);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-signin:hover:not(:disabled) {
+  background: linear-gradient(to right, #E55A00, #FF7B2C);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(255, 102, 0, 0.4);
+}
+
+.btn-signin:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-signin:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-content, .btn-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-loading i {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ============================================
+   SÉPARATEUR
+   ============================================ */
+
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 30px 0;
+  position: relative;
+  width: 100%;
+}
+
+.separator::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #FF6600, transparent);
+}
+
+.separator span {
+  padding: 0 15px;
+  color: #FF6600;
+  font-size: 0.9rem;
+  background-color: white;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   BOUTON D'INSCRIPTION
+   ============================================ */
+
+.btn-signup {
+  width: 100%;
+  padding: 16px;
+  background-color: transparent;
+  color: #FF6600;
+  border: 2px solid #FF6600;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-signup:hover {
+  background-color: rgba(255, 102, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 102, 0, 0.2);
+}
+
+/* ============================================
+   CITATION CULINAIRE
+   ============================================ */
+
+.quote {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, 
+    rgba(255, 102, 0, 0.05) 0%, 
+    rgba(255, 140, 66, 0.08) 100%
+  );
+  border-radius: 12px;
+  margin-top: 30px;
+  border-left: 4px solid #FF6600;
+  transition: var(--transition);
+}
+
+.quote:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 102, 0, 0.1);
+}
+
+.quote i:first-of-type {
+  color: #FF6600;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  display: block;
+  opacity: 0.7;
+}
+
+.quote p {
+  color: #555;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.quote .author {
+  color: #888;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   ANIMATIONS SUPPLEMENTAIRES
+   ============================================ */
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.logo i {
+  animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes floatInput {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+.input-with-icon input:focus {
+  animation: floatInput 0.3s ease-out;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .signin-card {
+    padding: 35px 30px;
+  }
+  
+  .header h2 {
+    font-size: 1.6rem;
+  }
+  
+  .logo h1 {
+    font-size: 2rem;
+  }
+  
+  .logo i {
+    font-size: 2rem;
+  }
+  
+  .food-item {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .signin-container {
+    padding: 10px;
+  }
+  
+  .signin-card {
+    padding: 30px 20px;
+  }
+  
+  .header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .header p {
+    font-size: 0.9rem;
+  }
+  
+  .food-item {
+    font-size: 1.8rem;
+  }
+  
+  .logo h1 {
+    font-size: 1.8rem;
+  }
+  
+  .logo i {
+    font-size: 1.8rem;
+  }
+  
+  .input-with-icon input {
+    padding: 14px 45px 14px 45px;
+    font-size: 0.95rem;
+  }
+  
+  .btn-signin, .btn-signup {
+    padding: 14px;
+    font-size: 1rem;
+  }
+  
+  .quote {
+    padding: 15px;
+  }
+  
+  .quote p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================
+   OPTIMISATIONS PERFORMANCE
+   ============================================ */
+
+.food-background {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+.food-item {
+  will-change: transform, opacity;
+}
+
+/* ============================================
+   STYLES FONT AWESOME
+   ============================================ */
+
+.fas {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+.fa-spin {
+  animation: fa-spin 1s infinite linear;
+}
+
+@keyframes fa-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ============================================
+   ALIMENTS ADDITIONNELS POUR LES GRANDS ÉCRANS
+   ============================================ */
+
+@media (min-width: 1200px) {
+  .food-61 { left: 6%; animation-delay: -60s; font-size: 2.4rem; color: #FF6600; animation-duration: 36s; }
+  .food-62 { left: 11%; animation-delay: -61s; font-size: 2.7rem; color: #FF8C42; animation-duration: 38s; }
+  .food-63 { left: 16%; animation-delay: -62s; font-size: 2.5rem; color: #FFB347; animation-duration: 37s; }
+  .food-64 { left: 21%; animation-delay: -63s; font-size: 2.9rem; color: #FF6600; animation-duration: 39s; }
+  .food-65 { left: 26%; animation-delay: -64s; font-size: 2.2rem; color: #FF8C42; animation-duration: 40s; }
+  .food-66 { left: 31%; animation-delay: -65s; font-size: 2.8rem; color: #FFB347; animation-duration: 36s; }
+  .food-67 { left: 36%; animation-delay: -66s; font-size: 2.3rem; color: #FF6600; animation-duration: 38s; }
+  .food-68 { left: 41%; animation-delay: -67s; font-size: 2.6rem; color: #FF8C42; animation-duration: 37s; }
+  .food-69 { left: 46%; animation-delay: -68s; font-size: 2.4rem; color: #FFB347; animation-duration: 39s; }
+  .food-70 { left: 51%; animation-delay: -69s; font-size: 2.7rem; color: #FF6600; animation-duration: 40s; }
+}
+
+/* ============================================
+   EFFET SHINE SUR BOUTON CONNEXION
+   ============================================ */
+
+.btn-signin::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.btn-signin:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+/* ============================================
+   GARANTIR QUE TOUT LE RESTE DE LA PAGE EST BLANC
+   ============================================ */
+
+html, body {
+  background-color: #FFFFFF !important;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* S'assurer que le container prend toute la hauteur */
+.signin-container {
+  min-height: 100vh;
+  background-color: var(--container-bg) !important; /* Force la couleur beige */
+}

@@ -1,0 +1,222 @@
+<div class="add-recipe-container">
+  <!-- Background décoratif -->
+  <div class="recipe-background">
+    <div *ngFor="let food of foodDecorations" 
+         class="food-decoration"
+         [style.left]="food.left"
+         [style.animationDelay]="food.animationDelay"
+         [style.animationDuration]="food.animationDuration"
+         [style.color]="food.color"
+         [style.fontSize]="food.fontSize">
+      {{ food.emoji }}
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="container">
+    <div class="recipe-card">
+      <!-- En-tête -->
+      <div class="header">
+        <div class="logo">
+          <i class="fas fa-utensils"></i>
+          <h1>Nouvelle <span>Recette</span></h1>
+        </div>
+        <h2>Partagez votre création culinaire</h2>
+        <p>Remplissez les détails de votre recette pour la partager avec la communauté</p>
+      </div>
+
+      <!-- Formulaire -->
+      <form #form="ngForm" (ngSubmit)="onSubmit()">
+
+        <!-- Nom de la recette -->
+        <div class="form-group">
+          <label for="title">
+            <i class="fas fa-edit"></i> Nom de la recette *
+          </label>
+          <input type="text" id="title" 
+                 [(ngModel)]="recipeForm.title" 
+                 name="title" 
+                 placeholder="Ex: Ratatouille Provençale" 
+                 required>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label for="description">
+            <i class="fas fa-align-left"></i> Description *
+          </label>
+          <textarea id="description" 
+                    [(ngModel)]="recipeForm.description" 
+                    name="description" 
+                    placeholder="Décrivez votre recette en quelques mots..." 
+                    rows="3"
+                    required></textarea>
+        </div>
+
+        <!-- Informations de base -->
+        <div class="form-row">
+          <!-- Temps de préparation -->
+          <div class="form-group">
+            <label for="preparationTime">
+              <i class="fas fa-clock"></i> Préparation (min) *
+            </label>
+            <input type="number" id="preparationTime" 
+                   [(ngModel)]="recipeForm.preparationTime" 
+                   name="preparationTime" 
+                   placeholder="30" 
+                   min="1"
+                   required>
+          </div>
+
+          <!-- Temps de cuisson -->
+          <div class="form-group">
+            <label for="cookingTime">
+              <i class="fas fa-fire"></i> Cuisson (min) *
+            </label>
+            <input type="number" id="cookingTime" 
+                   [(ngModel)]="recipeForm.cookingTime" 
+                   name="cookingTime" 
+                   placeholder="45" 
+                   min="0"
+                   required>
+          </div>
+
+          <!-- Nombre de personnes -->
+          <div class="form-group">
+            <label for="servings">
+              <i class="fas fa-utensils"></i> Personnes *
+            </label>
+            <input type="number" id="servings" 
+                   [(ngModel)]="recipeForm.servings" 
+                   name="servings" 
+                   placeholder="4" 
+                   min="1"
+                   required>
+          </div>
+        </div>
+
+        <!-- Catégorie et difficulté -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="category">
+              <i class="fas fa-tag"></i> Catégorie
+            </label>
+            <select id="category" 
+                    [(ngModel)]="recipeForm.category" 
+                    name="category"
+                    (change)="onCategoryChange()">
+              <option *ngFor="let category of categories" [value]="category">
+                {{ category }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="difficulty">
+              <i class="fas fa-signal"></i> Difficulté
+            </label>
+            <select id="difficulty" 
+                    [(ngModel)]="recipeForm.difficulty" 
+                    name="difficulty">
+              <option *ngFor="let difficulty of difficulties" [value]="difficulty">
+                {{ difficulty }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Aperçu du temps total -->
+        <div class="time-preview" *ngIf="recipeForm.preparationTime || recipeForm.cookingTime">
+          <i class="fas fa-hourglass-half"></i>
+          <span>Temps total estimé : <strong>{{ formatTime(getTotalTime()) }}</strong></span>
+        </div>
+
+        <!-- Ingrédients -->
+        <div class="form-section">
+          <div class="section-header">
+            <h3><i class="fas fa-shopping-basket"></i> Ingrédients *</h3>
+            <button type="button" class="btn-examples" (click)="fillWithExamples()">
+              <i class="fas fa-magic"></i> Remplir avec des exemples
+            </button>
+          </div>
+          <div class="ingredients-list">
+            <div class="ingredient-item" *ngFor="let ingredient of recipeForm.ingredients; let i = index">
+              <input type="text" 
+                     [(ngModel)]="recipeForm.ingredients[i]" 
+                     [name]="'ingredient' + i" 
+                     placeholder="Ex: 2 tomates mûres">
+              <button type="button" class="btn-remove" 
+                      (click)="removeIngredient(i)"
+                      *ngIf="recipeForm.ingredients.length > 1">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <button type="button" class="btn-add-field" (click)="addIngredient()">
+              <i class="fas fa-plus"></i> Ajouter un ingrédient
+            </button>
+          </div>
+        </div>
+
+        <!-- Étapes de préparation -->
+        <div class="form-section">
+          <div class="section-header">
+            <h3><i class="fas fa-list-ol"></i> Étapes de préparation *</h3>
+          </div>
+          <div class="steps-list">
+            <div class="step-item" *ngFor="let step of recipeForm.steps; let i = index">
+              <div class="step-number">{{ i + 1 }}</div>
+              <textarea [(ngModel)]="recipeForm.steps[i]" 
+                        [name]="'step' + i" 
+                        placeholder="Décrivez cette étape..."
+                        rows="2"></textarea>
+              <button type="button" class="btn-remove" 
+                      (click)="removeStep(i)"
+                      *ngIf="recipeForm.steps.length > 1">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <button type="button" class="btn-add-field" (click)="addStep()">
+              <i class="fas fa-plus"></i> Ajouter une étape
+            </button>
+          </div>
+        </div>
+
+        <!-- Image de la recette -->
+        <div class="form-section">
+          <h3><i class="fas fa-image"></i> Photo de la recette</h3>
+          <div class="image-preview">
+            <img [src]="recipeForm.imageUrl" alt="Aperçu de la recette" class="recipe-preview">
+            <div class="image-info">
+              <p>Image par défaut selon la catégorie. Vous pouvez modifier l'URL ci-dessous.</p>
+              <input type="text" 
+                     [(ngModel)]="recipeForm.imageUrl" 
+                     name="imageUrl" 
+                     placeholder="URL de l'image de la recette">
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions du formulaire -->
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" (click)="onCancel()">
+            <i class="fas fa-times"></i> Annuler
+          </button>
+          <button type="submit" class="btn-submit" [disabled]="!isFormValid() || isLoading">
+            <span *ngIf="!isLoading">
+              <i class="fas fa-check"></i> Publier la recette
+            </span>
+            <span *ngIf="isLoading">
+              <i class="fas fa-spinner fa-spin"></i> Publication en cours...
+            </span>
+          </button>
+        </div>
+
+        <!-- Informations -->
+        <div class="form-info">
+          <i class="fas fa-info-circle"></i>
+          <p>Les champs marqués d'un * sont obligatoires. Votre recette sera visible par tous les membres de la communauté.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

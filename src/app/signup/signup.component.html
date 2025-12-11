@@ -1,0 +1,224 @@
+<div class="signup-container">
+  <!-- Background avec aliments flottants améliorés -->
+  <div class="food-background">
+    <!-- Aliments statiques - 60 éléments -->
+    <div class="food-item food-1">🍕</div>
+    <div class="food-item food-2">🍔</div>
+    <div class="food-item food-3">🥗</div>
+    <div class="food-item food-4">🍝</div>
+    <div class="food-item food-5">🍣</div>
+    <div class="food-item food-6">🍩</div>
+    <div class="food-item food-7">🌮</div>
+    <div class="food-item food-8">🥐</div>
+    <div class="food-item food-9">🍓</div>
+    <div class="food-item food-10">🍰</div>
+    
+    <div class="food-item food-11">🥑</div>
+    <div class="food-item food-12">🍅</div>
+    <div class="food-item food-13">🥦</div>
+    <div class="food-item food-14">🥝</div>
+    <div class="food-item food-15">🍌</div>
+    <div class="food-item food-16">🍇</div>
+    <div class="food-item food-17">🍉</div>
+    <div class="food-item food-18">🧀</div>
+    <div class="food-item food-19">🥞</div>
+    <div class="food-item food-20">🍗</div>
+    
+    <div class="food-item food-21">🥩</div>
+    <div class="food-item food-22">🍖</div>
+    <div class="food-item food-23">🥪</div>
+    <div class="food-item food-24">🍜</div>
+    <div class="food-item food-25">🥘</div>
+    <div class="food-item food-26">🍛</div>
+    <div class="food-item food-27">🥟</div>
+    <div class="food-item food-28">🍤</div>
+    <div class="food-item food-29">🥠</div>
+    <div class="food-item food-30">🍚</div>
+    
+    <div class="food-item food-31">🍙</div>
+    <div class="food-item food-32">🥮</div>
+    <div class="food-item food-33">🍡</div>
+    <div class="food-item food-34">🥧</div>
+    <div class="food-item food-35">🍦</div>
+    <div class="food-item food-36">🍨</div>
+    <div class="food-item food-37">🍧</div>
+    <div class="food-item food-38">🎂</div>
+    <div class="food-item food-39">🧁</div>
+    <div class="food-item food-40">🍪</div>
+    
+    <div class="food-item food-41">🍫</div>
+    <div class="food-item food-42">🍬</div>
+    <div class="food-item food-43">🍭</div>
+    <div class="food-item food-44">🥜</div>
+    <div class="food-item food-45">🌰</div>
+    <div class="food-item food-46">🥛</div>
+    <div class="food-item food-47">☕</div>
+    <div class="food-item food-48">🍵</div>
+    <div class="food-item food-49">🥤</div>
+    <div class="food-item food-50">🍷</div>
+    
+    <div class="food-item food-51">🍸</div>
+    <div class="food-item food-52">🍹</div>
+    <div class="food-item food-53">🍺</div>
+    <div class="food-item food-54">🍻</div>
+    <div class="food-item food-55">🥂</div>
+    <div class="food-item food-56">🥃</div>
+    <div class="food-item food-57">🧃</div>
+    <div class="food-item food-58">🧉</div>
+    <div class="food-item food-59">🧊</div>
+    <div class="food-item food-60">🥢</div>
+    
+    <!-- Overlay pour effet de profondeur -->
+    <div class="overlay"></div>
+  </div>
+  
+  <!-- Contenu principal -->
+  <div class="container">
+    <div class="signup-card">
+      <!-- En-tête élégant -->
+      <div class="header">
+        <div class="logo">
+          <i class="fas fa-utensils"></i>
+          <h1>Recettes<span>Pro</span></h1>
+        </div>
+        <h2>Créez votre compte</h2>
+        <p>Rejoignez notre communauté culinaire et partagez vos meilleures recettes</p>
+      </div>
+      
+      <!-- Formulaire d'inscription -->
+      <form id="signup-form">
+        <!-- Photo de profil -->
+        <div class="photo-upload-container">
+          <div class="photo-preview" [ngClass]="{'has-photo': profilePhotoPreview}">
+            <img *ngIf="profilePhotoPreview" [src]="profilePhotoPreview" alt="Photo de profil">
+            <i *ngIf="!profilePhotoPreview" class="fas fa-user-circle"></i>
+            <div class="upload-overlay">
+              <i class="fas fa-camera"></i>
+              <span>Ajouter une photo</span>
+            </div>
+            <input 
+              type="file" 
+              id="profile-photo" 
+              accept="image/*" 
+              (change)="onPhotoSelected($event)"
+              class="photo-input"
+            >
+          </div>
+          <p class="photo-help">Format recommandé : JPG, PNG (max 2MB)</p>
+        </div>
+        
+        <!-- Nom et Prénom -->
+        <div class="row">
+          <div class="form-group half">
+            <div class="input-with-icon">
+              <i class="fas fa-user"></i>
+              <input 
+                type="text" 
+                id="lastname" 
+                placeholder="Nom" 
+                required 
+                [(ngModel)]="lastname" 
+                name="lastname"
+              >
+            </div>
+          </div>
+          
+          <div class="form-group half">
+            <div class="input-with-icon">
+              <i class="fas fa-user"></i>
+              <input 
+                type="text" 
+                id="firstname" 
+                placeholder="Prénom" 
+                required 
+                [(ngModel)]="firstname" 
+                name="firstname"
+              >
+            </div>
+          </div>
+        </div>
+        
+        <!-- Email -->
+        <div class="form-group">
+          <div class="input-with-icon">
+            <i class="fas fa-envelope"></i>
+            <input 
+              type="email" 
+              id="email" 
+              placeholder="Votre adresse email" 
+              required 
+              [(ngModel)]="email" 
+              name="email"
+              email
+            >
+          </div>
+        </div>
+        
+        <!-- Mot de passe -->
+        <div class="form-group">
+          <div class="input-with-icon">
+            <i class="fas fa-key"></i>
+            <input 
+              type="password" 
+              id="password" 
+              placeholder="Créez un mot de passe" 
+              required 
+              [(ngModel)]="password" 
+              name="password"
+              minlength="6"
+            >
+            <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+              <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </button>
+          </div>
+          <div class="password-strength" *ngIf="password">
+            <div class="strength-bar">
+              <div class="strength-level"></div>
+            </div>
+            <span class="strength-text">{{getPasswordStrengthText()}}</span>
+          </div>
+        </div>
+        
+        <!-- Confirmation mot de passe -->
+        <div class="form-group">
+          <div class="input-with-icon">
+            <i class="fas fa-key"></i>
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              placeholder="Confirmez le mot de passe" 
+              required 
+              [(ngModel)]="confirmPassword" 
+              name="confirmPassword"
+            >
+          </div>
+          <div class="password-match" *ngIf="password && confirmPassword">
+            <i [class]="password === confirmPassword ? 'fas fa-check-circle success' : 'fas fa-times-circle error'"></i>
+            <span [class]="password === confirmPassword ? 'success' : 'error'">
+              {{password === confirmPassword ? 'Les mots de passe correspondent' : 'Les mots de passe ne correspondent pas'}}
+            </span>
+          </div>
+        </div>
+        
+        <!-- Bouton d'inscription -->
+        <button type="submit" class="btn-signup">
+          <span class="btn-content">
+            <i class="fas fa-user-plus"></i>
+            <a href="/profil">Créer mon compte</a>
+          </span>
+        </button>
+        
+        <!-- Séparateur -->
+        <div class="separator">
+          <span>Déjà un compte ?</span>
+        </div>
+        
+        <!-- Bouton de connexion -->
+        <button type="button" class="btn-signin" routerLink="/home">
+          <i class="fas fa-sign-in-alt"></i>
+          <a href="/signin">Se connecter</a>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

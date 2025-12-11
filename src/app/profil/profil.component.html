@@ -1,0 +1,115 @@
+<!-- Background décoratif -->
+<div class="profile-background">
+    <div *ngFor="let food of foodDecorations" 
+         class="food-decoration"
+         [style.left]="food.left"
+         [style.animationDelay]="food.animationDelay"
+         [style.animationDuration]="food.animationDuration"
+         [style.color]="food.color"
+         [style.fontSize]="food.fontSize">
+        {{ food.emoji }}
+    </div>
+</div>
+
+<!-- Container principal -->
+<div class="profile-container">
+    <!-- En-tête du profil -->
+    <div class="profile-header">
+        <div class="profile-image-container">
+            <img [src]="user.profileImage" alt="Photo de profil" class="profile-image">
+            <button class="edit-photo-btn" (click)="editProfilePhoto()">
+                <i class="fas fa-camera"></i>
+            </button>
+        </div>
+        
+        <div class="profile-info">
+            <h1 class="profile-name">{{ user.name }}</h1>
+            <p class="profile-bio">{{ user.bio }}</p>
+            
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-number">{{ userRecipes.length }}</span>
+                    <span class="stat-label">Recettes</span>
+                </div>
+            </div>
+            
+            <div class="profile-actions">
+                <button class="btn-primary" (click)="editProfile()">
+                    <i class="fas fa-edit"></i> Modifier le profil
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bouton pour ajouter une recette -->
+    <button class="btn-add" (click)="addNewRecipe()">
+        <i class="fas fa-plus-circle"></i><a href="/ajouter-recette">Ajouter une nouvelle recette</a> 
+    </button>
+
+    <!-- Section des recettes -->
+    <div class="recipes-section">
+        <h2 class="section-title">
+            <i class="fas fa-utensils"></i> Mes Recettes Publiées
+        </h2>
+        
+        <div class="recipes-grid" *ngIf="userRecipes.length > 0">
+            <!-- Boucle sur les recettes -->
+            <div class="recipe-card" *ngFor="let recipe of userRecipes">
+                <div class="recipe-image-container">
+                    <img [src]="recipe.imageUrl" [alt]="recipe.title" class="recipe-image">
+                    <div class="recipe-badge">
+                        <i class="fas fa-clock"></i> {{ getTotalTime(recipe) }}
+                    </div>
+                </div>
+                
+                <div class="recipe-content">
+                    <h3 class="recipe-title">{{ recipe.title }}</h3>
+                    
+                    <div class="recipe-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span class="meta-value">{{ recipe.preparationTime }} min</span>
+                            <span class="meta-label">Préparation</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-fire"></i>
+                            <span class="meta-value">{{ recipe.cookingTime }} min</span>
+                            <span class="meta-label">Cuisson</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-utensils"></i>
+                            <span class="meta-value">{{ recipe.servings }}</span>
+                            <span class="meta-label">Personnes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-actions">
+                        <button class="btn-view" (click)="viewRecipe(recipe.id)">
+                            <i class="fas fa-eye"></i> Voir
+                        </button>
+                        <button class="btn-delete" (click)="deleteRecipe(recipe)">
+                            <i class="fas fa-trash"></i> Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- État vide -->
+        <div class="empty-state" *ngIf="userRecipes.length === 0">
+            <i class="fas fa-utensils empty-icon"></i>
+            <h3>Aucune recette publiée</h3>
+            <p>Vous n'avez pas encore créé de recettes. Commencez dès maintenant à partager vos créations culinaires !</p>
+            <button class="btn-primary" (click)="addNewRecipe()">
+                <i class="fas fa-plus-circle"></i> Créer ma première recette
+            </button>
+        </div>
+    </div>
+
+    <!-- Citation -->
+    <div class="profile-quote">
+        <i class="fas fa-quote-left"></i>
+        <p>La cuisine, c'est comme l'amour. Il faut y entrer avec abandon ou pas du tout.</p>
+        <div class="quote-author">– Harriet Van Horne</div>
+    </div>
+</div>

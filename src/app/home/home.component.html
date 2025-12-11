@@ -1,7 +1,7 @@
 <div class="search-bar">
-  <input type="text" placeholder="Rechercher une recette..." />
+ <input type="text" placeholder="Rechercher une recette..." [(ngModel)]="searchText" (input)="filterRecipes()" />
 
-  <select>
+  <select [(ngModel)]="selectedType" (change)="filterRecipes()">
     <option value="">Tous</option>
     <option value="plat">Plat</option>
     <option value="dessert">Dessert</option>

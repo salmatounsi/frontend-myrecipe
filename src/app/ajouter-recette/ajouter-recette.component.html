@@ -1,4 +1,26 @@
+<nav class="navbar">
+  <div class="logo"></div>
+
+  <ul class="links">
+    <li><a href="/home">Accueil</a></li>
+    <li><a href="/profil">Profil</a></li>
+    <li><a href="#" class="logout-btn">Déconnexion</a></li>
+  </ul>
+</nav>
+
 <div class="add-recipe-container">
+  <!-- Background décoratif -->
+  <!--div class="recipe-background">
+    <div *ngFor="let food of foodDecorations" 
+         class="food-decoration"
+         [style.left]="food.left"
+         [style.animationDelay]="food.animationDelay"
+         [style.animationDuration]="food.animationDuration"
+         [style.color]="food.color"
+         [style.fontSize]="food.fontSize">
+      {{ food.emoji }}
+    </div>
+  </div-->
 
   <div class="container">
     <div class="recipe-card">

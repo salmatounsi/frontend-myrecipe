@@ -74,9 +74,10 @@
   background: white;
 }
 
+/* Grid des recettes */
 .recipes {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
   padding: 40px 60px;
   justify-content: center;
@@ -105,6 +106,7 @@
   .recipes {
     padding: 30px 30px;
     gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }
 
@@ -125,6 +127,7 @@
   .recipes {
     gap: 20px;
     padding: 30px 20px;
+    grid-template-columns: 1fr;
   }
 }
 

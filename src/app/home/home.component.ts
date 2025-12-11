@@ -6,6 +6,7 @@ import { Recipe } from '../models/Recipe';
 import { FormsModule } from '@angular/forms'; 
 @Component({
     selector: 'app-home',
+    standalone:true,
     imports: [RecipeCardComponent, CommonModule, NgFor, FormsModule],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']

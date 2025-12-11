@@ -1,47 +1,57 @@
 .card {
-  width: 280px;
-  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  background: white;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 25px rgba(255, 102, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
   cursor: pointer;
+  width: 100%;
+  max-width: 350px;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(255, 102, 0, 0.2);
+}
+
+.recipe-image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
 }
 
 .recipe-img {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
-  display: block;
   transition: transform 0.5s ease;
+  display: block;
 }
 
 .card:hover .recipe-img {
   transform: scale(1.05);
 }
 
+/* Contenu de la carte */
 .card-body {
-  padding: 20px;
+  padding: 25px;
 }
 
 h3 {
-  margin: 0 0 12px 0;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #2d3436;
-  line-height: 1.4;
+  color: #333;
+  margin: 0 0 15px 0;
+  line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Infos utilisateur */
 .user {
   display: flex;
   align-items: center;
@@ -64,44 +74,49 @@ h3 {
   font-size: 0.95rem;
   font-weight: 500;
   color: #636e72;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Bouton voir détails */
 button {
   width: 100%;
-  padding: 12px 16px;
+  padding: 12px 20px;
   border: none;
-  background: linear-gradient(135deg, #ff7043, #ff8a65);
+  background: #FF6600;
   color: white;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.3px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(255, 112, 67, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  font-family: 'Poppins', sans-serif;
 }
 
 button:hover {
-  background: linear-gradient(135deg, #f4511e, #ff7043);
+  background: #E55A00;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255, 112, 67, 0.4);
 }
 
 button:active {
   transform: translateY(0);
 }
 
-button::after {
-  content: "→";
-  font-size: 1.1rem;
-  opacity: 0.8;
-  transition: transform 0.3s ease;
-}
-
-button:hover::after {
-  transform: translateX(4px);
+/* Responsive */
+@media (max-width: 480px) {
+  .card-body {
+    padding: 20px;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  
+  button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
 }

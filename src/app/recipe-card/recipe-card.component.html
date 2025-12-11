@@ -1,12 +1,18 @@
 <div class="card">
-  <img [src]="recipe.photoUrl" class="recipe-img" />
+  <div class="recipe-image-container">
+    <img [src]="recipe.photoUrl" class="recipe-img" [alt]="recipe.title" />
+  </div>
 
   <div class="card-body">
     <h3>{{ recipe.title }}</h3>
 
     <div class="user">
-      <img [src]="recipe.user.photoUserString ? recipe.user.photoUserString : recipe.png" class="user-img" />
-      <span>{{recipe.user.firstName}} {{recipe.user.lastName}}</span>
+      <img 
+        [src]="recipe.user.photoUserString ? recipe.user.photoUserString : 'assets/default-user.png'" 
+        class="user-img" 
+        [alt]="recipe.user.firstName + ' ' + recipe.user.lastName"
+      />
+      <span>{{ recipe.user.firstName }} {{ recipe.user.lastName }}</span>
     </div>
 
     <button>Voir détails</button>

@@ -5,8 +5,7 @@ import { User } from "./User";
 export interface Recipe {
   id?: number;
   title: string;
-  photoRecipeString?: string | null;
-  extPhoto?: string | null;
+  photoUrl?: string | "recipe.png";
   description?: string | null;
   preparationTime?: string | null; 
   numberOfServings: number;

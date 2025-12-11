@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-signup',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+    selector: 'app-signup',
+    imports: [FormsModule, CommonModule],
+    templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit, OnDestroy {
   // Champs du formulaire

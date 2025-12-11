@@ -19,11 +19,10 @@ interface Recipe {
 }
 
 @Component({
-  selector: 'app-ajouter-recette',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './ajouter-recette.component.html',
-  styleUrls: ['./ajouter-recette.component.css']
+    selector: 'app-ajouter-recette',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './ajouter-recette.component.html',
+    styleUrls: ['./ajouter-recette.component.css']
 })
 export class AjouterRecetteComponent implements OnInit {
 

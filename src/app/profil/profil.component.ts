@@ -33,11 +33,10 @@ interface FoodDecoration {
 }
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css']
+    selector: 'app-profile',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './profil.component.html',
+    styleUrls: ['./profil.component.css']
 })
 export class ProfileComponent implements OnInit {
   

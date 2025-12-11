@@ -3,11 +3,10 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-signin',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+    selector: 'app-signin',
+    imports: [FormsModule],
+    templateUrl: './signin.component.html',
+    styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit, OnDestroy {
 

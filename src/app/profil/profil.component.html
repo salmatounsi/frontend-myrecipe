@@ -1,5 +1,5 @@
 <!-- Background décoratif -->
-<div class="profile-background">
+<!--div class="profile-background">
     <div *ngFor="let food of foodDecorations" 
          class="food-decoration"
          [style.left]="food.left"
@@ -9,42 +9,45 @@
          [style.fontSize]="food.fontSize">
         {{ food.emoji }}
     </div>
-</div>
+</div-->
+<nav class="navbar">
+  <div class="logo"></div>
 
+  <ul class="links">
+    <li><a href="/home">Accueil</a></li>
+    <li><a href="/profil">Profil</a></li>
+    <li><a href="#" class="logout-btn">Déconnexion</a></li>
+  </ul>
+</nav>
 <!-- Container principal -->
 <div class="profile-container">
-    <!-- En-tête du profil -->
-    <div class="profile-header">
-        <div class="profile-image-container">
-            <img [src]="user.profileImage" alt="Photo de profil" class="profile-image">
-            <button class="edit-photo-btn" (click)="editProfilePhoto()">
-                <i class="fas fa-camera"></i>
-            </button>
-        </div>
-        
-        <div class="profile-info">
-            <h1 class="profile-name">{{ user.name }}</h1>
-            <p class="profile-bio">{{ user.bio }}</p>
-            
-            <div class="profile-stats">
-                <div class="stat-item">
-                    <span class="stat-number">{{ userRecipes.length }}</span>
-                    <span class="stat-label">Recettes</span>
-                </div>
+    <!-- En-tête du profil simplifié -->
+    <!-- Bouton moderne pour ajouter une nouvelle recette -->
+<!-- Container principal -->
+<div class="profile-container">
+    <!-- En-tête du profil simplifié -->
+    <div class="profile-header-simple">
+        <div class="profile-info-minimal">
+            <div class="profile-image-minimal">
+                <img [src]="user.profileImage" alt="Photo de profil" class="profile-pic">
             </div>
-            
-            <div class="profile-actions">
-                <button class="btn-primary" (click)="editProfile()">
-                    <i class="fas fa-edit"></i> Modifier le profil
-                </button>
-            </div>
+            <h1 class="profile-name-minimal">{{ user.name }}</h1>
         </div>
     </div>
 
-    <!-- Bouton pour ajouter une recette -->
-    <button class="btn-add" (click)="addNewRecipe()">
-        <i class="fas fa-plus-circle"></i><a href="/ajouter-recette">Ajouter une nouvelle recette</a> 
-    </button>
+    <!-- Bouton moderne pour ajouter une nouvelle recette -->
+    <div class="add-recipe-wrapper">
+        <a href="/ajouter-recette" class="add-recipe-card">
+            <div class="icon-container">
+                <i class="fas fa-plus-circle"></i>
+            </div>
+            <div class="text-container">
+                Ajouter une nouvelle recette
+            </div>
+        </a>
+    </div>
+</div>
+
 
     <!-- Section des recettes -->
     <div class="recipes-section">

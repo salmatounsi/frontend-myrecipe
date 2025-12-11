@@ -1,0 +1,44 @@
+<div *ngIf="recipe as r; else notFound" class="recipe-container">
+  <div class="recipe-header">
+    <button (click)="goBack()">
+      <span>←</span> Retour
+    </button>
+  </div>
+
+  <img [src]="r.image" [alt]="r.title" class="recipe-image" (error)="onImageError($event)" />
+
+  <div class="recipe-content">
+    <h2>{{ r.title }}</h2>
+
+    <div class="recipe-sections">
+      <!-- Ingrédients à gauche -->
+      <div class="recipe-section">
+        <h3>Ingrédients</h3>
+        <ul>
+          <li *ngFor="let ing of r.ingredients">
+            <strong>{{ ing.quantity }}</strong> {{ ing.name }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Étapes à droite -->
+      <div class="recipe-section">
+        <h3>Étapes de préparation</h3>
+        <ol>
+          <li *ngFor="let step of r.steps">
+            {{ step }}
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="not-found">
+    <p>❌ Recette introuvable</p>
+    <button (click)="goBack()">
+      <span>←</span> Retour
+    </button>
+  </div>
+</ng-template>

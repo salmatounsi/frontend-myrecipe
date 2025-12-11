@@ -3,14 +3,27 @@
     <img [src]="recipe.photoUrl" class="recipe-img" [alt]="recipe.title" />
   </div>
 
-  <div class="card-body">
-    <h3>{{ recipe.title }}</h3>
-
-    <div class="user">
-    <!--  <img [src]="recipe.user.photoUserString ?  recipe.user.photoExt + recipe.user.photoUserString : defaultPhoto"  class="user-img" />-->
-      <span>{{recipe.user.firstName}} {{recipe.user.lastName}}</span>
-    </div>
-
-    <button>Voir détails</button>
-  </div>
+ <div class="recipe-content">
+                    <h3 class="recipe-title">{{ recipe.title }}</h3>
+                    
+                    <div class="recipe-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span class="meta-value">{{ recipe.preparationTime }} min</span>
+                            <span class="meta-label">Préparation</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-utensils"></i>
+                            <span class="meta-value">{{ recipe.numberOfServings }}</span>
+                            <span class="meta-label">Personnes</span>
+                        </div>
+                    </div>
+                    <span>{{ recipe.user.firstName }} {{ recipe.user.lastName }}</span>
+                    <div class="recipe-actions">
+                        <button class="btn-view" (click)="viewRecipe(recipe.id)">
+                            <i class="fas fa-eye"></i> Voir
+                        </button>
+                    </div>
+                </div>
 </div>
+        

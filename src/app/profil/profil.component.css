@@ -11,8 +11,233 @@ body {
     color: #333;
     line-height: 1.6;
 }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  padding: 20px 60px;
+  color: white;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logo::before {
+  content: '🍳';
+  font-size: 28px;
+  transition: transform 0.3s ease;
+}
+
+.logo::after {
+  content: 'MyRecipe';
+  color: white;
+}
+
+.logo:hover {
+  transform: translateX(3px);
+  opacity: 0.9;
+}
+
+.logo:hover::before {
+  transform: rotate(-15deg);
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.links li {
+  position: relative;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  position: relative;
+  display: inline-block;
+  background: transparent;
+}
+
+.links a::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: white;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.links a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.links a:hover::after {
+  width: 60%;
+}
+
+.links a:active {
+  transform: scale(0.96);
+}
+
+/* Style minimaliste pour le bouton Logout */
+.links li:last-child a {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  margin-left: 12px;
+  transition: all 0.3s ease;
+}
+
+.links li:last-child a:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.links li:last-child a::after {
+  display: none;
+}
+
+/* Effet subtil au scroll */
+.navbar.scrolled {
+  padding: 16px 60px;
+  box-shadow: 0 6px 30px rgba(255, 107, 53, 0.25);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 16px 30px;
+    flex-wrap: wrap;
+  }
+  
+  .logo {
+    font-size: 22px;
+  }
+  
+  .logo::before {
+    font-size: 24px;
+  }
+  
+  .links {
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 12px;
+  }
+  
+  .links a {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .links li:last-child a {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 14px 20px;
+  }
+  
+  .logo {
+    font-size: 20px;
+  }
+  
+  .links a {
+    font-size: 13px;
+    padding: 7px 14px;
+  }
+}
 
 /* Container principal */
+/* Wrapper centré */
+.add-recipe-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+/* Nouveau bouton sous forme de carte */
+.add-recipe-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ff7043; /* orange doux */
+    padding: 14px 22px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: 0.25s ease;
+}
+
+/* Icône */
+.icon-container i {
+    font-size: 26px;
+}
+
+/* Effet hover moderne */
+.add-recipe-card:hover {
+    background: #ff5722;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.20);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .add-recipe-card {
+        padding: 12px 18px;
+        gap: 10px;
+    }
+
+    .text-container {
+        font-size: 16px;
+    }
+
+    .icon-container i {
+        font-size: 22px;
+    }
+}
+
 .profile-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -49,121 +274,63 @@ body {
         transform: translateY(-100vh) rotate(360deg);
     }
 }
-
-/* En-tête du profil */
-.profile-header {
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 40px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(255, 102, 0, 0.15);
+/* En-tête du profil simplifié */
+/* Wrapper qui permet de cliquer partout */
+.add-recipe-wrapper {
+    width: 100%;
     display: flex;
-    align-items: center;
-    gap: 30px;
-    position: relative;
-    overflow: hidden;
-}
-
-.profile-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(to right, #FF6600, #FF8C42);
-}
-
-.profile-image-container {
-    position: relative;
-    flex-shrink: 0;
-}
-
-.profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid white;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.edit-photo-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(to right, #FF6600, #FF8C42);
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.3s;
-    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3);
+    margin-top: 25px;
+    cursor: pointer;
 }
 
-.edit-photo-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(255, 102, 0, 0.4);
-}
-
-.profile-info {
-    flex: 1;
-}
-
-.profile-name {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 10px;
-    background: linear-gradient(to right, #FF6600, #FF8C42);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.profile-bio {
-    color: #666;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    max-width: 600px;
-}
-
-.profile-stats {
+/* Style principal de la “carte” du bouton */
+.add-recipe-card {
     display: flex;
-    gap: 40px;
-    margin-bottom: 25px;
+    align-items: center;
+    gap: 12px;
+    background: #ff7043; /* orange doux */
+    padding: 14px 22px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: 0.25s ease;
 }
 
-.stat-item {
-    text-align: center;
+/* Hover moderne */
+.add-recipe-card:hover {
+    background: #ff5722;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.20);
 }
 
-.stat-number {
-    display: block;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #FF6600;
+/* Icon + couleur + taille */
+.icon-container i {
+    font-size: 26px;
+    color: white;
 }
 
-.stat-label {
-    display: block;
-    color: #777;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 5px;
+/* Texte */
+.add-recipe-text {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
 }
 
-.profile-actions {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+/* Responsive (mobile) */
+@media (max-width: 480px) {
+    .add-recipe-card {
+        padding: 12px 18px;
+        gap: 10px;
+    }
+
+    .add-recipe-text {
+        font-size: 16px;
+    }
+
+    .icon-container i {
+        font-size: 22px;
+    }
 }
 
 /* Boutons */

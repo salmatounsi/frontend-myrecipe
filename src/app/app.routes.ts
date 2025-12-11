@@ -9,10 +9,9 @@ import { SigninComponent } from './signin/signin.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: '', component: SigninComponent },
+  { path: 'signin', component: SigninComponent },
   { path: 'recipes/:id', component: RecipeDetailsComponent },
   { path: '**', redirectTo: '' },
-  { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   {path:'profil', component:ProfileComponent},
   {path:'ajouter-recette',component:AjouterRecetteComponent}
